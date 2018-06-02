@@ -1,0 +1,1 @@
+To run this tests you need to write mvn verify in console, or use IDEA.
