@@ -3,6 +3,6 @@ Feature: Login tests
 
   Scenario: Login in to system using correct credentials
     Given I am on login page
-    When I enter ocrrect credentials
+    When I enter correct credentials
     And I submit credentials
     Then I check if I was logged in

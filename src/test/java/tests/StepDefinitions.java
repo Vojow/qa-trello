@@ -94,7 +94,7 @@ public class StepDefinitions {
         }
     }
 
-    @When("I enter ocrrect credentials")
+    @When("I enter correct credentials")
     public void enterCorrectCredentials() {
         loginPage.fillForm("i1167774@nwytg.com", "Q1w2e3r4");
     }
@@ -102,6 +102,16 @@ public class StepDefinitions {
     @When("I submit credentials")
     public void submitCredentials() {
         loginPage.login();
+    }
+
+    @When("I filter by email with \"([^\"]*)\"")
+    public void filterByEmailWithValue(String value) throws InterruptedException {
+        usersPage.filterEmailByString(value);
+    }
+
+    @Then("I want to check filtering by email with \"([^\"]*)\"")
+    public void checkFilteringByEmailWithValue(String value) {
+        Assert.assertTrue(usersPage.chekcIfRowWithEmailIsVisibleAndIsOne(value));
     }
 
     @Then("I check if I was logged in")
@@ -143,8 +153,6 @@ public class StepDefinitions {
                 Assert.assertTrue(usersPage.checkIfRowsAreSortedDescending(usersPage.getListOfVerifiedAt()));
                 break;
         }
-
-
     }
 
 }

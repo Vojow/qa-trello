@@ -2,6 +2,7 @@ package pageObjects;
 
 import com.google.common.collect.Ordering;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -15,6 +16,9 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class UsersPage extends PageObject{
+
+    @FindBy(xpath = "//input[contains(@name, 'email')]")
+    private WebElement emailFilter;
 
     @FindBy(xpath = "//th[@alt='email']")
     private WebElement emailHeader;
@@ -103,6 +107,21 @@ public class UsersPage extends PageObject{
                 break;
             }
         }
+        return result;
+    }
+
+    public void filterEmailByString( String email) throws InterruptedException {
+        emailFilter.sendKeys(email);
+        emailFilter.sendKeys(Keys.ENTER);
+        Thread.sleep(1000);
+    }
+
+    public boolean chekcIfRowWithEmailIsVisibleAndIsOne(String email) {
+        Boolean result;
+        if (listOfEmails.size() > 0){
+            result = listOfEmails.size() == 1 && listOfEmails.get(0).getText().equals(email);
+        }
+        else result = false;
         return result;
     }
 }
