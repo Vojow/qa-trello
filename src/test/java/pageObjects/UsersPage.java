@@ -87,7 +87,7 @@ public class UsersPage extends PageObject{
     public boolean checkIfRowsAreSortedAscending(List<WebElement> list) {
         boolean result = true;
         for(int i = 0; i < list.size() - 1; i++) {
-            if(list.get(i).getText().compareTo(list.get(i + 1).getText()) > 0) {
+            if(list.get(i).getText().toLowerCase().compareTo(list.get(i + 1).getText().toLowerCase()) > 0) {
                 result = false;
                 break;
             }
@@ -98,9 +98,7 @@ public class UsersPage extends PageObject{
     public boolean checkIfRowsAreSortedDescending(List<WebElement> list) {
         boolean result = true;
         for(int i = 0; i < list.size() - 1; i++) {
-            if(list.get(i).getText().compareTo(list.get(i + 1).getText()) < 0) {
-                System.out.println(list.get(i).getText());
-                System.out.println(list.get(i + 1).getText());
+            if(list.get(i).getText().toLowerCase().compareTo(list.get(i + 1).getText().toLowerCase()) < 0) {
                 result = false;
                 break;
             }
