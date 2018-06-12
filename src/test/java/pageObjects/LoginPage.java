@@ -1,19 +1,32 @@
 package pageObjects;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.annotations.Timeout;
+import ru.yandex.qatools.htmlelements.element.TextInput;
+
+import java.awt.*;
 
 public class LoginPage extends PageObject {
 
-    @FindBy(id = "user-email")
-    private WebElement email;
+    @Timeout(3)
+    @FindBy(id = "user")
+    private TextInput email;
 
-    @FindBy(id = "user-password")
-    private WebElement password;
+    @Timeout(3)
+    @FindBy(id = "password")
+    private TextInput password;
 
-    @FindBy(xpath = "//input[@type='submit']")
-    private WebElement submit;
+    @Timeout(3)
+    @FindBy(xpath = ".//input[contains(@type, 'submit')]")
+    private TextInput submit;
+
+    public TextArea getErrorMessage() {
+        return errorMessage;
+    }
+
+    @FindBy(className = "error-message")
+    private TextArea errorMessage;
 
     public LoginPage(WebDriver driver) {
         super(driver);
